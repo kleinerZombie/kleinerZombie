@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 function iambluez () {
 
 	cls; rfkill unblock bluetooth; 
@@ -10,8 +8,9 @@ function iambluez () {
 	bluetoothctl agent on;
 
 	if [ ! $# -eq 0 ] ; then
+	   # This part can be configured to your personal Bluetooth devices.
 	   if [ "$1" = 'headset' ] ; then
-	        f(){ while ! $ bluetoothctl scan on | grep -q "00:00:00:00:00:00"; do true; done };
+		f(){ while ! $ bluetoothctl scan on | grep -q "00:00:00:00:00:00"; do true; done };
 	        bluetoothctl connect 00:00:00:00:00:00;
 	   elif [ ! "$1" = 'headset' ] && [ ! $# -eq 0 ] ; then
 	        {  f(){ while ! $ bluetoothctl scan on | grep -q "$1"; do true; done };
